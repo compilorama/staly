@@ -2,4 +2,4 @@ class GAnalytics {
   init(){}
 }
 
-export default GAnalytics
+export default GAnalytics;

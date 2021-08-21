@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "test": "jest"
+    "format": "eslint 'src/**/*.js'",
+    "test": "jest",
+    "prepublishOnly": "rm -rf ./dist && NODE_ENV=production npm run build"
   },
   "repository": {
     "type": "git",
