@@ -1,0 +1,36 @@
+{
+  "name": "@glorious/analytics",
+  "version": "0.1.0",
+  "description": "Privacy-first analytics",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glorious-codes/glorious-analytics.git"
+  },
+  "keywords": [
+    "analytics",
+    "privacy"
+  ],
+  "author": "Rafael Camargo <hello@rafaelcamargo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glorious-codes/glorious-analytics/issues"
+  },
+  "homepage": "https://github.com/glorious-codes/glorious-analytics#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-jest": "^27.0.6",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "terser-webpack-plugin": "^5.1.4",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-merge": "^5.8.0"
+  }
+}

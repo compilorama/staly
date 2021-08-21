@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "source": {
+      "files": "src/**/*.js",
+      "entry": "src/index.js"
+    },
+    "dist": {
+      "root": "dist",
+      "filename": {
+        "prod": "ganalytics.min.js",
+        "dev": "ganalytics.js"
+      }
+    }
+  }
+}
