@@ -67,6 +67,6 @@ describe('GAnalytics', () => {
     const ganalytics = new GAnalytics();
     ganalytics.init();
     ganalytics.trackPageview();
-    expect(gcookie.set).toHaveBeenCalledWith('analytics', 'disabled');
+    expect(gcookie.set).toHaveBeenCalledWith('analytics', 'disabled', 7300);
   });
 });

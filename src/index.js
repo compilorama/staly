@@ -1,6 +1,6 @@
 import Plausible from 'plausible-tracker';
 import gcookie from '@glorious/cookie';
-import { ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE } from '@src/constants/analytics';
+import { ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY } from '@src/constants/analytics';
 import urlService from '@src/services/url';
 
 class GAnalytics {
@@ -12,7 +12,7 @@ class GAnalytics {
   }
   trackPageview(){
     if(isAnalyticsEnabled()) this.plausible.trackPageview();
-    else gcookie.set(ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE);
+    else gcookie.set(ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY);
   }
 }
 
