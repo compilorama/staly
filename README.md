@@ -8,6 +8,49 @@
 npm install @glorious/analytics --save
 ```
 
+## Usage
+
+Glorious Analytics is based on [Plausible](https://plausible.io/), a simple and privacy-friendly alternative to Google Analytics.
+
+``` javascript
+import GAnalytics from '@glorious/analytics';
+
+const analytics = new GAnalytics();
+analytics.init('glorious.codes');
+analytics.trackPageview();
+```
+
+To avoid been tracked by any site using Glorious Analytics, set `analytics` search param as `disabled`. Your preference will be set in a cookie and the following visits won't be tracked even without declaring the analytics search param on url.
+```
+https://glorious.codes?analytics=disabled
+```
+
+## API
+
+### `init`
+
+``` javascript
+/*
+** @token: String [required]
+** @options: Object [optional]
+*/
+
+// Domain registered on Plausible
+const token = 'glorious.codes';
+// Local development is not tracked by default, but you can make it work by
+// setting trackLocalhost option as true on initializaton.
+const options = { trackLocalhost: true };
+const analytics = new GAnalytics();
+
+analytics.init(token, options);
+```
+
+### `trackPageview`
+
+``` javascript
+analytics.trackPageview();
+```
+
 ## Contributing
 
 1. Install [Node](https://nodejs.org/en/). Download the "Recommend for Most Users" version.
