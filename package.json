@@ -2,7 +2,10 @@
   "name": "@glorious/analytics",
   "version": "0.1.0",
   "description": "Privacy-first analytics",
-  "main": "src/index.js",
+  "main": "dist/ganalytics.min.js",
+  "files": [
+    "dist/**/*.*"
+  ],
   "scripts": {
     "build": "webpack",
     "format": "eslint 'src/**/*.js'",
