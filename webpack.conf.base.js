@@ -2,12 +2,12 @@ const path = require('path');
 const project = require('./project.json');
 
 module.exports = {
-  entry: `${__dirname}/${project.scripts.source.entry}`,
+  entry: `${__dirname}/${project.source.entry}`,
   output: {
     library: 'GAnalytics',
     libraryTarget: 'umd',
     libraryExport: 'default',
-    path: `${__dirname}/${project.scripts.dist.root}`
+    path: `${__dirname}/${project.dist.root}`
   },
   module: {
     rules: [{
@@ -15,5 +15,10 @@ module.exports = {
       exclude: /node_modules/,
       use: 'babel-loader'
     }]
-  }
+  },
+  resolve: {
+    alias: {
+      '@src': `${__dirname}/${project.source.root}`
+    }
+  },
 };

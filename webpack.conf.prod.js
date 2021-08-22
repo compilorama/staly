@@ -5,7 +5,7 @@ const project = require('./project.json');
 module.exports = {
   mode: 'production',
   output: {
-    filename: project.scripts.dist.filename.prod
+    filename: project.dist.filename.prod
   },
   optimization: {
     minimizer: [

@@ -1,7 +1,7 @@
 const project = require('./project.json');
 
 module.exports = {
-  collectCoverageFrom: [project.scripts.source.files],
+  collectCoverageFrom: [project.source.files],
   coverageReporters: ['html', 'text-summary'],
   coverageThreshold: {
     global: {
@@ -10,6 +10,9 @@ module.exports = {
       functions: 100,
       lines: 100
     }
+  },
+  moduleNameMapper: {
+    '@src\/(.*)$': `<rootDir>/${project.source.root}$1`
   },
   transform: {
     '^.+\\.js$': 'babel-jest'

@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   output: {
-    filename: project.scripts.dist.filename.dev
+    filename: project.dist.filename.dev
   },
   plugins: [
     new webpack.SourceMapDevToolPlugin(),
