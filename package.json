@@ -34,5 +34,10 @@
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@glorious/cookie": "^0.3.0",
+    "plausible-tracker": "^0.3.1",
+    "query-string": "^7.0.1"
   }
 }
