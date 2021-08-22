@@ -2,6 +2,9 @@
 
 > Privacy-first analytics.
 
+[![CircleCI](https://circleci.com/gh/glorious-codes/glorious-analytics/tree/master.svg?style=svg)](https://circleci.com/gh/glorious-codes/glorious-analytics/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/glorious-codes/glorious-analytics/badge.svg?branch=master)](https://coveralls.io/github/glorious-codes/glorious-analytics?branch=master)
+
 ## Installation
 
 ```
