@@ -23,7 +23,7 @@ analytics.init('glorious.codes');
 analytics.trackPageview();
 ```
 
-To avoid been tracked by any site using Glorious Analytics, set `analytics` search param as `disabled`. Your preference will be set in a cookie and the following visits won't be tracked even without declaring the analytics search param on url.
+To avoid being tracked by any site using Glorious Analytics, set `analytics` search param as `disabled`. Your preference will be set in a cookie and the following visits won't be tracked even without declaring the analytics search param on url.
 ```
 https://glorious.codes?analytics=disabled
 ```
