@@ -1,6 +1,6 @@
 {
   "name": "@glorious/analytics",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Privacy-first analytics",
   "main": "dist/ganalytics.min.js",
   "files": [
