@@ -4,9 +4,6 @@ const project = require('./project.json');
 
 module.exports = {
   mode: 'production',
-  output: {
-    filename: project.dist.filename.prod
-  },
   optimization: {
     minimizer: [
       new TerserPlugin({

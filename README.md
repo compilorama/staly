@@ -13,7 +13,7 @@ npm install @glorious/analytics --save
 
 ## Usage
 
-Glorious Analytics is based on [Plausible](https://plausible.io/), a simple and privacy-friendly alternative to Google Analytics.
+Glorious Analytics is based on [Plausible](https://plausible.io/) by default, but you can optionally use another service. See **Adapters** section below to learn more.
 
 ``` javascript
 import GAnalytics from '@glorious/analytics';
@@ -53,6 +53,12 @@ analytics.init(token, options);
 ``` javascript
 analytics.trackPageview();
 ```
+
+## Adapters
+
+You can optionally use Glorious Analytics with the following adapters. Click over one of them to get specific instructions:
+
+- [Google Analytics](https://github.com/glorious-codes/glorious-analytics/blob/master/src/adapters/google-analytics/google-analytics.md)
 
 ## Contributing
 

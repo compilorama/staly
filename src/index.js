@@ -4,20 +4,26 @@ import { ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY } from '@
 import urlService from '@src/services/url';
 
 class GAnalytics {
-  init(token, options){
-    this.setPlausible(instantiatePlausible(token, options));
+  init(token, { adapter, ...rest } = {}){
+    this.setToken(token);
+    this.setAdapter((adapter || buildDefaultAdapter(token, rest)));
+    this.adapter.init(token);
   }
-  setPlausible(plausible){
-    this.plausible = plausible;
+  setToken(token){
+    this.token = token;
   }
-  trackPageview(){
-    if(isAnalyticsEnabled()) this.plausible.trackPageview();
+  setAdapter(adapter){
+    this.adapter = adapter;
+  }
+  trackPageview(options){
+    if(isAnalyticsEnabled()) this.adapter.trackPageview(this.token, options);
     else gcookie.set(ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY);
   }
 }
 
-function instantiatePlausible(domain, { trackLocalhost } = {}){
-  return Plausible({ domain, trackLocalhost });
+function buildDefaultAdapter(domain, { trackLocalhost }){
+  const plausible = Plausible({ domain, trackLocalhost });
+  return { ...plausible, init: () => {} };
 }
 
 function isAnalyticsEnabled(){

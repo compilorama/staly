@@ -5,6 +5,7 @@
 import Plausible from 'plausible-tracker';
 import gcookie from '@glorious/cookie';
 import { PlausibleMock, plausibleInstanceMock } from '@src/mocks/plausible';
+import googleAnalytics from '@src/adapters/google-analytics/google-analytics';
 import windowService from '@src/services/window';
 import GAnalytics from '.';
 
@@ -14,7 +15,8 @@ Plausible.mockImplementation(PlausibleMock);
 describe('GAnalytics', () => {
   beforeEach(() => {
     plausibleInstanceMock.trackPageview = jest.fn();
-    windowService.getSearch = jest.fn();
+    windowService.getSearch = jest.fn(() => '');
+    gcookie.get = jest.fn();
   });
 
   it('should initialize Plausible on initialize not tracking local development by default', () => {
@@ -38,10 +40,11 @@ describe('GAnalytics', () => {
   });
 
   it('should track page view', () => {
+    const token = 'glorious.codes';
     const ganalytics = new GAnalytics();
-    ganalytics.init();
+    ganalytics.init(token);
     ganalytics.trackPageview();
-    expect(plausibleInstanceMock.trackPageview).toHaveBeenCalled();
+    expect(plausibleInstanceMock.trackPageview).toHaveBeenCalledWith(token, undefined);
   });
 
   it('should not track page view when analytics search param has been set as disabled', () => {
@@ -68,5 +71,17 @@ describe('GAnalytics', () => {
     ganalytics.init();
     ganalytics.trackPageview();
     expect(gcookie.set).toHaveBeenCalledWith('analytics', 'disabled', 7300);
+  });
+
+  it('should optionally use Google Analytics as analytics service', () => {
+    googleAnalytics.init = jest.fn();
+    googleAnalytics.trackPageview = jest.fn();
+    const token = 'UA-325476';
+    const ganalytics = new GAnalytics();
+    const pageviewOptions = { some: 'option' };
+    ganalytics.init(token, { adapter: googleAnalytics });
+    ganalytics.trackPageview(pageviewOptions);
+    expect(googleAnalytics.init).toHaveBeenCalledWith(token);
+    expect(googleAnalytics.trackPageview).toHaveBeenCalledWith(token, pageviewOptions);
   });
 });
