@@ -13,10 +13,16 @@ jest.mock('plausible-tracker');
 Plausible.mockImplementation(PlausibleMock);
 
 describe('GAnalytics', () => {
+  function stubCookies(cookies){
+    gcookie.get = jest.fn(key => cookies[key]);
+  }
+
   beforeEach(() => {
     plausibleInstanceMock.trackPageview = jest.fn();
     windowService.getSearch = jest.fn(() => '');
-    gcookie.get = jest.fn();
+    googleAnalytics.init = jest.fn();
+    googleAnalytics.trackPageview = jest.fn();
+    stubCookies({});
   });
 
   it('should initialize Plausible on initialize not tracking local development by default', () => {
@@ -56,8 +62,7 @@ describe('GAnalytics', () => {
   });
 
   it('should not track page view when a cookie called analytics has been set as disabled', () => {
-    const cookies = { analytics: 'disabled' };
-    gcookie.get = jest.fn(key => cookies[key]);
+    stubCookies({ analytics: 'disabled' });
     const ganalytics = new GAnalytics();
     ganalytics.init();
     ganalytics.trackPageview();
@@ -74,8 +79,6 @@ describe('GAnalytics', () => {
   });
 
   it('should optionally use Google Analytics as analytics service', () => {
-    googleAnalytics.init = jest.fn();
-    googleAnalytics.trackPageview = jest.fn();
     const token = 'UA-325476';
     const ganalytics = new GAnalytics();
     const pageviewOptions = { some: 'option' };
@@ -83,5 +86,19 @@ describe('GAnalytics', () => {
     ganalytics.trackPageview(pageviewOptions);
     expect(googleAnalytics.init).toHaveBeenCalledWith(token);
     expect(googleAnalytics.trackPageview).toHaveBeenCalledWith(token, pageviewOptions);
+  });
+
+  it('should not initialize adapter when analytics search param has been set as disabled', () => {
+    windowService.getSearch = jest.fn(() => '?analytics=disabled');
+    const ganalytics = new GAnalytics();
+    ganalytics.init('UA-325476', { adapter: googleAnalytics });
+    expect(googleAnalytics.init).not.toHaveBeenCalled();
+  });
+
+  it('should not track page view when a cookie called analytics has been set as disabled', () => {
+    stubCookies({ analytics: 'disabled' });
+    const ganalytics = new GAnalytics();
+    ganalytics.init('UA-325476', { adapter: googleAnalytics });
+    expect(googleAnalytics.init).not.toHaveBeenCalled();
   });
 });

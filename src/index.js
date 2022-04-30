@@ -7,7 +7,7 @@ class GAnalytics {
   init(token, { adapter, ...rest } = {}){
     this.setToken(token);
     this.setAdapter((adapter || buildDefaultAdapter(token, rest)));
-    this.adapter.init(token);
+    if(isAnalyticsEnabled()) this.adapter.init(token);
   }
   setToken(token){
     this.token = token;
