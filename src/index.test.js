@@ -17,12 +17,16 @@ describe('GAnalytics', () => {
     gcookie.get = jest.fn(key => cookies[key]);
   }
 
+  function stubCurrentHref(href){
+    windowService.getHref = jest.fn(() => href);
+  }
+
   beforeEach(() => {
     plausibleInstanceMock.trackPageview = jest.fn();
-    windowService.getSearch = jest.fn(() => '');
     googleAnalytics.init = jest.fn();
     googleAnalytics.trackPageview = jest.fn();
     stubCookies({});
+    stubCurrentHref('http://some.url.com/');
   });
 
   it('should initialize Plausible on initialize not tracking local development by default', () => {
@@ -54,7 +58,7 @@ describe('GAnalytics', () => {
   });
 
   it('should not track page view when analytics search param has been set as disabled', () => {
-    windowService.getSearch = jest.fn(() => '?analytics=disabled');
+    stubCurrentHref('http://some.url.com/?analytics=disabled');
     const ganalytics = new GAnalytics();
     ganalytics.init();
     ganalytics.trackPageview();
@@ -70,7 +74,7 @@ describe('GAnalytics', () => {
   });
 
   it('should set a cookie called analytics as disabled when analytics search param has been set as disabled', () => {
-    windowService.getSearch = jest.fn(() => '?analytics=disabled');
+    stubCurrentHref('http://some.url.com/?analytics=disabled');
     gcookie.set = jest.fn();
     const ganalytics = new GAnalytics();
     ganalytics.init();
@@ -89,7 +93,7 @@ describe('GAnalytics', () => {
   });
 
   it('should not initialize adapter when analytics search param has been set as disabled', () => {
-    windowService.getSearch = jest.fn(() => '?analytics=disabled');
+    stubCurrentHref('http://some.url.com/?analytics=disabled');
     const ganalytics = new GAnalytics();
     ganalytics.init('UA-325476', { adapter: googleAnalytics });
     expect(googleAnalytics.init).not.toHaveBeenCalled();

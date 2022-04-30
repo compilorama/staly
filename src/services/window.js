@@ -1,6 +1,6 @@
 const _public = {};
 
-_public.getSearch = () => window.location.search;
+_public.getHref = () => window.location.href;
 
 _public.getPathname = () => window.location.pathname;
 

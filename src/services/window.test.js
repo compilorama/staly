@@ -5,8 +5,8 @@
 import windowService from './window';
 
 describe('Window Service', () => {
-  it('should get location search', () => {
-    expect(windowService.getSearch()).toEqual(window.location.search);
+  it('should get location href', () => {
+    expect(windowService.getHref()).toEqual(window.location.href);
   });
 
   it('should get location pathname', () => {
