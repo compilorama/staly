@@ -6,7 +6,7 @@ To use [Glorious Analytics](https://analytics.google.com/) as analytics service,
 
 ``` javascript
 import GAnalytics from '@glorious/analytics';
-import googleAnalyticsAdapter from '@glorious/analytics/adapters/google-analytics';
+import googleAnalyticsAdapter from '@glorious/analytics/dist/adapters/google-analytics';
 
 const analytics = new GAnalytics();
 analytics.init('UA-325476', { adapter: googleAnalyticsAdapter });
