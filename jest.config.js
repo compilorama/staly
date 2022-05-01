@@ -14,6 +14,7 @@ module.exports = {
   moduleNameMapper: {
     '@src\/(.*)$': `<rootDir>/${project.source.root}$1`
   },
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.js$': 'babel-jest'
   }

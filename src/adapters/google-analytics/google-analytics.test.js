@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import adapter from './google-analytics';
 import dateService from '@src/services/date';
 import windowService from '@src/services/window';

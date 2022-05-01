@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import dateService from './date';
 
 describe('Date Service', () => {

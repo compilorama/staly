@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import Plausible from 'plausible-tracker';
 import gcookie from '@glorious/cookie';
 import { PlausibleMock, plausibleInstanceMock } from '@src/mocks/plausible';

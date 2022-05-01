@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import windowService from './window';
 
 describe('Window Service', () => {
