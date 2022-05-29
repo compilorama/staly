@@ -1,13 +1,14 @@
 import Plausible from 'plausible-tracker';
 import gcookie from '@glorious/cookie';
 import { ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY } from '@src/constants/analytics';
+import userAgentService from '@src/services/user-agent';
 import urlService from '@src/services/url';
 
 class GAnalytics {
   init(token, { adapter, ...rest } = {}){
     this.setToken(token);
     this.setAdapter((adapter || buildDefaultAdapter(token, rest)));
-    if(isAnalyticsEnabled()) this.adapter.init(token);
+    if(shouldTrack()) this.adapter.init(token);
   }
   setToken(token){
     this.token = token;
@@ -16,7 +17,7 @@ class GAnalytics {
     this.adapter = adapter;
   }
   trackPageview(options){
-    if(isAnalyticsEnabled()) this.adapter.trackPageview(this.token, options);
+    if(shouldTrack()) this.adapter.trackPageview(this.token, options);
     else gcookie.set(ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY);
   }
 }
@@ -24,6 +25,10 @@ class GAnalytics {
 function buildDefaultAdapter(domain, { trackLocalhost }){
   const plausible = Plausible({ domain, trackLocalhost });
   return { ...plausible, init: () => {} };
+}
+
+function shouldTrack(){
+  return !userAgentService.isBot() && isAnalyticsEnabled();
 }
 
 function isAnalyticsEnabled(){

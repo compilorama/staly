@@ -3,6 +3,7 @@ import gcookie from '@glorious/cookie';
 import { PlausibleMock, plausibleInstanceMock } from '@src/mocks/plausible';
 import googleAnalytics from '@src/adapters/google-analytics/google-analytics';
 import windowService from '@src/services/window';
+import userAgentService from '@src/services/user-agent';
 import GAnalytics from '.';
 
 jest.mock('plausible-tracker');
@@ -61,6 +62,16 @@ describe('GAnalytics', () => {
     expect(plausibleInstanceMock.trackPageview).not.toHaveBeenCalled();
   });
 
+  it('should not track page view if user agent is a robot', () => {
+    userAgentService.isBot = jest.fn(() => true);
+    const token = 'glorious.codes';
+    const ganalytics = new GAnalytics();
+    ganalytics.init(token);
+    ganalytics.trackPageview();
+    expect(plausibleInstanceMock.trackPageview).not.toHaveBeenCalled();
+    userAgentService.isBot.mockRestore();
+  });
+
   it('should not track page view when a cookie called analytics has been set as disabled', () => {
     stubCookies({ analytics: 'disabled' });
     const ganalytics = new GAnalytics();
@@ -90,13 +101,6 @@ describe('GAnalytics', () => {
 
   it('should not initialize adapter when analytics search param has been set as disabled', () => {
     stubCurrentHref('http://some.url.com/?analytics=disabled');
-    const ganalytics = new GAnalytics();
-    ganalytics.init('UA-325476', { adapter: googleAnalytics });
-    expect(googleAnalytics.init).not.toHaveBeenCalled();
-  });
-
-  it('should not track page view when a cookie called analytics has been set as disabled', () => {
-    stubCookies({ analytics: 'disabled' });
     const ganalytics = new GAnalytics();
     ganalytics.init('UA-325476', { adapter: googleAnalytics });
     expect(googleAnalytics.init).not.toHaveBeenCalled();

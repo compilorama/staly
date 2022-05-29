@@ -8,4 +8,8 @@ describe('Window Service', () => {
   it('should get location pathname', () => {
     expect(windowService.getPathname()).toEqual(window.location.pathname);
   });
+
+  it('should get user agent', () => {
+    expect(windowService.getUserAgent()).toEqual(window.navigator.userAgent);
+  });
 });
