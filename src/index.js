@@ -17,7 +17,7 @@ class GAnalytics {
     this.adapter = adapter;
   }
   trackPageview(options){
-    if(shouldTrack()) this.adapter.trackPageview(this.token, options);
+    if(shouldTrack()) this.adapter.trackPageview(options, this.token);
     else gcookie.set(ANALYTICS_KEY, ANALYTICS_DISABLED_VALUE, ANALYTICS_KEY_EXPIRY);
   }
 }

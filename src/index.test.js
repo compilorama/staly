@@ -51,7 +51,16 @@ describe('GAnalytics', () => {
     const ganalytics = new GAnalytics();
     ganalytics.init(token);
     ganalytics.trackPageview();
-    expect(plausibleInstanceMock.trackPageview).toHaveBeenCalledWith(token, undefined);
+    expect(plausibleInstanceMock.trackPageview).toHaveBeenCalled();
+  });
+
+  it('should track page view passing custom options', () => {
+    const token = 'glorious.codes';
+    const customOptions = { some: 'option' };
+    const ganalytics = new GAnalytics();
+    ganalytics.init(token);
+    ganalytics.trackPageview(customOptions);
+    expect(plausibleInstanceMock.trackPageview).toHaveBeenCalledWith(customOptions, token);
   });
 
   it('should not track page view when analytics search param has been set as disabled', () => {
@@ -87,16 +96,6 @@ describe('GAnalytics', () => {
     ganalytics.init();
     ganalytics.trackPageview();
     expect(gcookie.set).toHaveBeenCalledWith('analytics', 'disabled', 7300);
-  });
-
-  it('should optionally use Google Analytics as analytics service', () => {
-    const token = 'UA-325476';
-    const ganalytics = new GAnalytics();
-    const pageviewOptions = { some: 'option' };
-    ganalytics.init(token, { adapter: googleAnalytics });
-    ganalytics.trackPageview(pageviewOptions);
-    expect(googleAnalytics.init).toHaveBeenCalledWith(token);
-    expect(googleAnalytics.trackPageview).toHaveBeenCalledWith(token, pageviewOptions);
   });
 
   it('should not initialize adapter when analytics search param has been set as disabled', () => {

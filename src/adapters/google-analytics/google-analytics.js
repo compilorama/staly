@@ -8,7 +8,7 @@ _public.init = googleAnalyticsId => {
   gtag('js', dateService.getNow());
 };
 
-_public.trackPageview = (googleAnalyticsId, { path } = {}) => {
+_public.trackPageview = ({ path } = {}, googleAnalyticsId) => {
   configAnalytics(googleAnalyticsId, path);
 };
 
