@@ -22,8 +22,8 @@ class GAnalytics {
   }
 }
 
-function buildDefaultAdapter(domain, { trackLocalhost }){
-  const plausible = Plausible({ domain, trackLocalhost });
+function buildDefaultAdapter(domain, options){
+  const plausible = Plausible({ domain, ...options });
   return { ...plausible, init: () => {} };
 }
 

@@ -26,24 +26,19 @@ describe('GAnalytics', () => {
     stubCurrentHref('http://some.url.com/');
   });
 
-  it('should initialize Plausible on initialize not tracking local development by default', () => {
+  it('should initialize Plausible on initialize', () => {
     const token = 'glorious.codes';
     const ganalytics = new GAnalytics();
     ganalytics.init(token);
-    expect(PlausibleMock).toHaveBeenCalledWith({
-      domain: token,
-      trackLocalhost: undefined
-    });
+    expect(PlausibleMock).toHaveBeenCalledWith({ domain: token });
   });
 
-  it('should initialize Plausible on initialize optionally tracking local development', () => {
+  it('should optionally initialize Plausible passing options', () => {
     const token = 'glorious.codes';
     const ganalytics = new GAnalytics();
-    ganalytics.init(token, { trackLocalhost: true });
-    expect(PlausibleMock).toHaveBeenCalledWith({
-      domain: token,
-      trackLocalhost: true
-    });
+    const options = { hashMode: true, trackLocalhost: true };
+    ganalytics.init(token, options);
+    expect(PlausibleMock).toHaveBeenCalledWith({ domain: token, ...options });
   });
 
   it('should track page view', () => {
