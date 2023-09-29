@@ -1,29 +1,29 @@
-# Glorious Analytics
+# Staly
 
 > Privacy-first analytics.
 
-[![CircleCI](https://circleci.com/gh/glorious-codes/glorious-analytics/tree/master.svg?style=svg)](https://circleci.com/gh/glorious-codes/glorious-analytics/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/glorious-codes/glorious-analytics/badge.svg?branch=master)](https://coveralls.io/github/glorious-codes/glorious-analytics?branch=master)
+[![CircleCI](https://circleci.com/gh/compilorama/staly/tree/master.svg?style=svg)](https://circleci.com/gh/compilorama/staly/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/compilorama/staly/badge.svg?branch=master)](https://coveralls.io/github/compilorama/staly?branch=master)
 
 ## Installation
 
 ```
-npm install @glorious/analytics --save
+npm install @compilorama/staly --save
 ```
 
 ## Usage
 
-Glorious Analytics is based on [Plausible](https://plausible.io/) by default, but you can optionally use another service. See **Adapters** section below to learn more.
+Staly is based on [Plausible](https://plausible.io/) by default, but you can optionally use another service. See **Adapters** section below to learn more.
 
 ``` javascript
-import GAnalytics from '@glorious/analytics';
+import Staly from '@compilorama/staly';
 
-const analytics = new GAnalytics();
-analytics.init('glorious.codes');
-analytics.trackPageview();
+const staly = new Staly();
+staly.init('glorious.codes');
+staly.trackPageview();
 ```
 
-To avoid being tracked by any site using Glorious Analytics, set `analytics` search param as `disabled`. Your preference will be set in a cookie and the following visits won't be tracked even without declaring the analytics search param on url.
+To avoid being tracked by any site using Staly, set `analytics` search param as `disabled`. Your preference will be set in a cookie and the following visits won't be tracked even without declaring the analytics search param on url.
 ```
 https://glorious.codes?analytics=disabled
 ```
@@ -39,26 +39,26 @@ https://glorious.codes?analytics=disabled
 */
 
 // Domain registered on Plausible
-const token = 'glorious.codes';
+const token = 'compilorama.com';
 // Local development is not tracked by default, but you can make it work by
 // setting trackLocalhost option as true on initializaton.
 const options = { trackLocalhost: true };
-const analytics = new GAnalytics();
+const staly = new Staly();
 
-analytics.init(token, options);
+staly.init(token, options);
 ```
 
 ### `trackPageview`
 
 ``` javascript
-analytics.trackPageview();
+staly.trackPageview();
 ```
 
 ## Adapters
 
-You can optionally use Glorious Analytics with the following adapters. Click over one of them to get specific instructions:
+You can optionally use Staly with the following adapters. Click over one of them to get specific instructions:
 
-- [Google Analytics](https://github.com/glorious-codes/glorious-analytics/blob/master/src/adapters/google-analytics/google-analytics.md)
+- [Google Analytics](https://github.com/compilorama/staly/blob/master/src/adapters/google-analytics/google-analytics.md)
 
 ## Contributing
 
@@ -66,12 +66,12 @@ You can optionally use Glorious Analytics with the following adapters. Click ove
 
 2. Clone the repo:
 ``` bash
-git clone git@github.com:glorious-codes/glorious-analytics.git
+git clone git@github.com:compilorama/staly.git
 ```
 
 3. Go to the project directory:
 ``` bash
-cd glorious-analytics
+cd staly
 ```
 
 4. Install the project dependencies:

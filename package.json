@@ -1,8 +1,8 @@
 {
-  "name": "@glorious/analytics",
+  "name": "@compilorama/staly",
   "version": "0.4.0",
   "description": "Privacy-first analytics",
-  "main": "dist/ganalytics.min.js",
+  "main": "dist/staly.min.js",
   "files": [
     "dist/**/*.*"
   ],
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glorious-codes/glorious-analytics.git"
+    "url": "git+https://github.com/compilorama/staly.git"
   },
   "keywords": [
     "analytics",
@@ -23,9 +23,9 @@
   "author": "Rafael Camargo <hello@rafaelcamargo.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/glorious-codes/glorious-analytics/issues"
+    "url": "https://github.com/compilorama/staly/issues"
   },
-  "homepage": "https://github.com/glorious-codes/glorious-analytics#readme",
+  "homepage": "https://github.com/compilorama/staly#readme",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",

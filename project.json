@@ -7,10 +7,10 @@
     {
       "entry": "src/index.js",
       "output": "dist",
-      "library": "GAnalytics",
+      "library": "Staly",
       "filename": {
-        "production": "ganalytics.min.js",
-        "development": "ganalytics.js"
+        "production": "staly.min.js",
+        "development": "staly.js"
       }
     },
     {
